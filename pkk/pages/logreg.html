@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYAYSNACK</title>
+    <link rel="stylesheet" href="../style/logreg.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="left">
+        <img src="../img/people.png" alt="">
+    </div>
+    <div class="right">
+        <a href="../index.html" class="rect"><ion-icon name="close-outline"></ion-icon></a>
+        <form class="container">
+            <div class="header">
+                <span class="title" id="title">login</span>
+                <span class="sub" id="sub">welcome back!</span>
+            </div>
+            <div class="wrapper" id="name">
+                <input type="text" placeholder="Name" required>
+            </div>
+            <div class="wrapper">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="wrapper">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <button class="butt">log in</button>
+            <div class="link">
+                <span id="link">Don't have an account? <button onclick="change()">Sign Up</button></span>
+            </div>
+        </form>
+    </div>
+    <script src="../js/logreg.js"></script>
+</body>
+</html>
