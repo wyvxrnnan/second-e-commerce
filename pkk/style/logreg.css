@@ -20,9 +20,6 @@ body {
     min-height: 100vh;
     max-height: 100vh;
     overflow-x: hidden;
-}
-
-body {
     display: flex;
 }
 
@@ -148,7 +145,7 @@ body {
     cursor: pointer;
 }
 
-#name {
+#email {
     display: none;
 }
 

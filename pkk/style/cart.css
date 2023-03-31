@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Serif+SC&family=Source+Sans+Pro&display=swap');
+
+:root {
+    --white: #F5F5F5;
+    --black: #252525;
+    --red: #B1464A;
+    --light: #FFF0DE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--white);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2em;
+    letter-spacing: 1px;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.container {
+    width: 100%;
+    padding: 10px 50px;
+}
+
+.wrapper {
+    width: 100%;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 1px var(--red);
+}
+
+.wrapper .img-container {
+    position: relative;
+    width: 100px;
+}
+
+.wrapper img {
+    width: 100%;
+    object-fit: fill;
+}
+
+.wrapper .detail {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: 25px;
+}
+
+.wrapper .detail .name {
+    font-size: 1.8em;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.wrapper .detail .price {
+    font-size: 1.4em;
+}
+
+.wrapper .calc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+ion-icon {
+    cursor: pointer;
+}
+
+.wrapper .calc ion-icon, .wrapper .calc span {
+    font-size: 1.5em;
+}
+
+.panel {
+    width: 100%;
+    background-color: var(--red);
+    bottom: 0;
+    top: 1;
+    position: absolute;
+    padding: 25px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.panel .total {
+    display: flex;
+    gap: 15px;
+}
+
+.panel .total .text {
+    text-transform: uppercase;
+}
+
+.panel .total .desc span {
+    font-weight: 600;
+}
+
+.panel .total .text, .panel .total .desc span {
+    font-size: 1.5em;
+    color: var(--white);
+}
+
+.panel button {
+    text-transform: capitalize;
+    border: none;
+    background-color: var(--light);
+    color: var(--black);
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 40px;
+}
+
+.panel button:hover {
+    background-color: var(--black);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.panel button ion-icon{
+    font-size: 1.5em;
+}
