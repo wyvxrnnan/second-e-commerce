@@ -6,7 +6,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("location: ../index.html");
+    header("location: index-login.php");
 }
 
 // register
@@ -28,15 +28,16 @@ if(isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['stat_login']=1;
         $_SESSION['username'] = $row['username'];
+        $_SESSION['email'] = $row['email'];
         
         if($row["role"]=="00")
         {
-            header("location: ../index.html");
+            header("location: index-login.php");
         }
-        // else if($row["posisi"]=="01")
-        // {
-        //     header("location:admin-only/dashboard.php");
-        // }
+        else if($row["role"]=="01")
+        {
+            header("location:../admin/dashboard.php");
+        }
     } 
     else 
     {
@@ -60,7 +61,7 @@ if(isset($_POST['login'])) {
         <img src="../img/people.png" alt="">
     </div>
     <div class="right">
-        <a href="../index.html" class="rect"><ion-icon name="close-outline"></ion-icon></a>
+        <a href="../index.php" class="rect"><ion-icon name="close-outline"></ion-icon></a>
         <form class="container" method="post">
             <div class="header">
                 <span class="title" id="title">login</span>

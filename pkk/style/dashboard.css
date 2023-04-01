@@ -52,14 +52,14 @@ ion-icon:hover {
     color: var(--white);
 }
 
-/*content*/
-
 .content {
+    height: 100vh;
     padding: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 5rem;
+    overflow-y: scroll;
 }
 
 .card-container {
@@ -119,26 +119,56 @@ ion-icon:hover {
     color: var(--white);
 }
 
-/* table */
-
 .table-container {
     display: flex;
+    flex-direction: column;
+    box-shadow: 3px 3px 3px 3px gainsboro;
+    border-radius: 25px;
+    width: 100%;
+    padding: 50px;
 }
 
 .table {
     width: 100%;
-    padding: 1rem;
+    height: 175px;
+    overflow-y: scroll;
 }
 
-.table .header {
+.header {
     width: 100%;
-    font-size: 3em;
-    font-weight: 600;
-    padding: 10px;
-    
+    font-size: 2em;
+    font-weight: 600;  
+    margin-bottom: 25px;  
+}
+
+.table table thead tr th {
+    text-transform: capitalize;
+}
+
+.table table tbody .icon{
+    display: flex;
+}
+
+.table table tbody ion-icon{
+    font-size: 2em;
+}
+
+.table table tbody ion-icon:hover{
+    color: var(--red);
+}
+
+.table th, .table td {
+    padding: 5px 30px;
+}
+
+.table table tbody tr {
+    background-color: var(--light);
 }
 
 .table table {
-    border: none;
+    width: 100%;
+    text-align: center;
+    row-gap: 10px;
+    border-spacing: 0 15px;
+    border-collapse: separate;
 }
-

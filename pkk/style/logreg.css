@@ -88,8 +88,10 @@ body {
     background: none;
     border: none;
     width: 300px;
+    height: fit-content;
     color: var(--white);
     font-size: 1em;
+    padding: 15px 25px 15px 25px;
 }
 
 .right .container input::placeholder {
@@ -101,10 +103,16 @@ body {
 .right .container .wrapper {
     border: 2px solid var(--white);
     border-radius: 25px;
-    padding: 15px 25px 15px 25px;
     display: flex;
     gap: 25px;
     box-shadow: 2px 2px 8px var(--black);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 9999s ease-in-out 0s;
 }
 
 .right .container .butt {
