@@ -22,6 +22,26 @@ if(isset($_POST['add']))
     }
 }
 
+if(isset($_POST['update'])){
+    $update_p_id = $_POST['update_p_id'];
+    $update_p_name = $_POST['update_p_name'];
+    $update_p_price = $_POST['update_p_price'];
+    $update_p_image = $_FILES['update_p_image']['name'];
+    $update_p_image_tmp_name = $_FILES['update_p_image']['tmp_name'];
+    $update_p_image_folder = 'uploads/'.$update_p_image;
+ 
+    $update_query = mysqli_query($conn, "UPDATE `tb_barang` SET nama = '$update_p_name', harga = '$update_p_price', gambar = '$update_p_image' WHERE kode = '$update_p_id'");
+ 
+    if($update_query){
+        move_uploaded_file($update_p_image_tmp_name, $update_p_image_folder);
+        echo "<script>alert('product updated!')</script>";
+        header('location:dashboard.php');
+    }else{
+        echo "<script>alert('failed to update product')</script>";
+        header('location:form.php');
+    }
+ 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +58,7 @@ if(isset($_POST['add']))
     <div class="sidebar">
         <div class="links">
             <a href="dashboard.php"><ion-icon name="pie-chart-outline"></ion-icon></a>
-            <a href="form.html"><ion-icon name="cube-outline"></ion-icon></a>
+            <a href="form.php"><ion-icon name="cube-outline"></ion-icon></a>
             <a href="../index.php"><ion-icon name="log-out-outline"></ion-icon></a>           
         </div>
     </div>
