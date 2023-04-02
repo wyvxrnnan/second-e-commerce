@@ -2,14 +2,48 @@
 
 include '../sql/connection.php';
 
-if(isset($_GET['delete'])){
-    $delete_id = $_GET['delete'];
-    $delete_product = mysqli_query($conn, "DELETE FROM `tb_barang` WHERE id = $delete_id ") or die('query failed');
-    if($delete_product){
-        echo "<script>alert('Product Deleted!')</script>";
+if(isset($_GET['delete_item'])){
+    $delete_id = $_GET['delete_item'];
+    $delete = mysqli_query($conn, "DELETE FROM `tb_barang` WHERE id = $delete_id ") or die('query failed');
+    if($delete){
+        echo "<script>alert('delete successful')</script>";
         header('location:dashboard.php');
     }else{
-        echo "<script>alert('Failed to delete product')</script>";
+        echo "<script>alert('delete failed')</script>";
+    };
+};
+
+if(isset($_GET['delete_purchase'])){
+    $delete_id = $_GET['delete_purchase'];
+    $delete = mysqli_query($conn, "DELETE FROM `tb_pembelian` WHERE id = $delete_id ") or die('query failed');
+    if($delete){
+        echo "<script>alert('delete successful')</script>";
+        header('location:dashboard.php');
+    }else{
+        echo "<script>alert('delete failed')</script>";
+    };
+};
+
+if(isset($_GET['delete_acc'])){
+    $delete_id = $_GET['delete_acc'];
+    $delete = mysqli_query($conn, "DELETE FROM `tb_akun` WHERE id = $delete_id ") or die('query failed');
+    if($delete){
+        echo "<script>alert('delete successful')</script>";
+        header('location:dashboard.php');
+    }else{
+        echo "<script>alert('delete failed')</script>";
+    };
+};
+
+
+if(isset($_GET['delete_msg'])){
+    $delete_id = $_GET['delete_msg'];
+    $delete = mysqli_query($conn, "DELETE FROM `tb_kontak` WHERE id = $delete_id ") or die('query failed');
+    if($delete){
+        echo "<script>alert('delete successful')</script>";
+        header('location:dashboard.php');
+    }else{
+        echo "<script>alert('delete failed')</script>";
     };
 };
 
@@ -113,7 +147,7 @@ if(isset($_POST['update'])){
                             <td><img src="uploads/<?php echo $row['gambar']; ?>" height="100" alt=""></td>
                             <td class="action">
                                 <a href="dashboard.php?edit=<?php echo $row['id']; ?>"><ion-icon name="create-outline"></ion-icon></a>
-                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
+                                <a href="dashboard.php?delete_item=<?php echo $row['id']; ?>" onclick="return confirm('are your sure you want to delete this?');"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
                         <?php
@@ -196,7 +230,7 @@ if(isset($_POST['update'])){
                             <td><?php echo $row['total_produk']; ?></td>
                             <td><?php echo $row['total_harga']; ?></td>
                             <td class="action">
-                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
+                                <a href="dashboard.php?delete_purchase=<?php echo $row['id']; ?>" onclick="return confirm('are your sure you want to delete this?');"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
                         <?php
@@ -236,7 +270,45 @@ if(isset($_POST['update'])){
                             <td><?php echo $row['password']; ?></td>
                             <td><?php echo $row['role']; ?></td>
                             <td class="action">
-                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
+                                <a href="dashboard.php?delete_acc=<?php echo $row['id']; ?>" onclick="return confirm('are your sure you want to delete this?');"><ion-icon name="trash-outline"></ion-icon></a>
+                            </td>
+                        </tr>
+                        <?php
+                                }
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="header">Recent Customer</div>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>username</th>
+                            <th>email</th>
+                            <th>message</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $select_msg = mysqli_query($conn, "SELECT * FROM tb_kontak");
+                            if(mysqli_num_rows($select_msg) > 0)
+                            {
+                                while($row = mysqli_fetch_assoc($select_msg)){
+                        ?>
+                        <tr>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['message']; ?></td>
+                            <td class="action">
+                                <a href="dashboard.php?delete_msg=<?php echo $row['id']; ?>" onclick="return confirm('are your sure you want to delete this?');"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
                         <?php
