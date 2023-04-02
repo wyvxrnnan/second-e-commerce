@@ -4,7 +4,7 @@ include '../sql/connection.php';
 session_start();
 if(!isset($_SESSION['stat_login']) and !isset($_SESSION['username']) and !isset($_SESSION['password']))
 {   
-    header('location:loginreg.php');
+    header('location:logreg.php');
 }
 
 if(isset($_POST['contact-submit']))

@@ -81,12 +81,36 @@ body {
     gap: 25px;
 }
 
-ion-icon {
+.wrapper .calc .num {
+    font-size: 1.2em;
+    width: 75px;
+    padding: 5px;
+    border: 1px solid var(--black);
+    background-color: transparent;
+}
+
+.wrapper .calc .update {
+    border: none;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1em;
+    padding: 8px 25px;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+
+.wrapper .calc .update:hover {
+    background-color: var(--red);
     cursor: pointer;
 }
 
-.wrapper .calc ion-icon, .wrapper .calc span {
-    font-size: 1.5em;
+.wrapper .calc .trash {
+    font-size: 2em;
+    color: var(--black);
+}
+
+.wrapper .calc .trash:hover {
+    color: var(--red);
 }
 
 .panel {
@@ -170,6 +194,7 @@ ion-icon {
     .container {
         width: 100%;
         padding: 15px;
+        height: 100vh;
     }
     
     .wrapper {

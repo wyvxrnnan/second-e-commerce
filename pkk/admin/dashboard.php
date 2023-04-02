@@ -1,3 +1,19 @@
+<?php
+
+include '../sql/connection.php';
+
+if(isset($_GET['delete'])){
+    $delete_id = $_GET['delete'];
+    $delete_product = mysqli_query($conn, "DELETE FROM `tb_barang` WHERE id = $delete_id ") or die('query failed');
+    if($delete_product){
+        echo "<script>alert('Product Deleted!')</script>";
+        header('location:dashboard.php');
+    }else{
+        echo "<script>alert('Failed to delete product')</script>";
+    };
+};
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +29,7 @@
     <div class="sidebar">
         <div class="links">
             <a href="dashboard.php"><ion-icon name="pie-chart-outline"></ion-icon></a>
-            <a href="form.html"><ion-icon name="cube-outline"></ion-icon></a>
+            <a href="form.php"><ion-icon name="cube-outline"></ion-icon></a>
             <a href="../index.php"><ion-icon name="log-out-outline"></ion-icon></a>           
         </div>
     </div>
@@ -64,36 +80,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $select_product = mysqli_query($conn, "SELECT * FROM tb_barang");
+                            if(mysqli_num_rows($select_product) > 0)
+                            {
+                                while($row = mysqli_fetch_assoc($select_product)){
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>ini produk</td>
-                            <td>10.000</td>
-                            <td>img</td>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['nama']; ?></td>
+                            <td>Rp<?php echo number_format($row['harga'], 2,',','.'); ?></td>
+                            <td><img src="uploads/<?php echo $row['gambar']; ?>" height="100" alt=""></td>
                             <td class="action">
-                                <ion-icon name="create-outline"></ion-icon>
-                                <ion-icon name="trash-outline"></ion-icon>
+                                <a href=""><ion-icon name="create-outline"></ion-icon></a>
+                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>ini produk</td>
-                            <td>10.000</td>
-                            <td>img</td>
-                            <td class="action">
-                                <ion-icon name="create-outline"></ion-icon>
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>ini produk</td>
-                            <td>10.000</td>
-                            <td>img</td>
-                            <td class="action">
-                                <ion-icon name="create-outline"></ion-icon>
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </td>
-                        </tr>
+                        <?php
+                            };
+                            }    
+                            // }else{
+                            // echo "<div class='empty'>no product added</div>";
+                            // };
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -106,37 +115,40 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>nama</th>
-                            <th>nomer</th>
+                            <th>name</th>
+                            <th>number</th>
                             <th>email</th>
-                            <th>metode</th>
-                            <th>jalan</th>
-                            <th>kota</th>
-                            <th>provinsi</th>
-                            <th>pin</th>
-                            <th>jumlah</th>
-                            <th>harga</th>
-                            <th>aksi</th>
+                            <th>method</th>
+                            <th>address</th>
+                            <th>item</th>
+                            <th>price</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $select_purchase = mysqli_query($conn, "SELECT * FROM tb_pembelian");
+                            if(mysqli_num_rows($select_purchase) > 0)
+                            {
+                                while($row = mysqli_fetch_assoc($select_purchase)){
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>abieza</td>
-                            <td>0878497321</td>
-                            <td>anan@gmail.com</td>
-                            <td>cash on delivery</td>
-                            <td>karadenan</td>
-                            <td>bogor</td>
-                            <td>jawa barat</td>
-                            <td>19420</td>
-                            <td>2</td>
-                            <td>20.000</td>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['nama']; ?></td>
+                            <td><?php echo $row['nomer']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['metode']; ?></td>
+                            <td><?php echo $row['alamat']; ?></td>
+                            <td><?php echo $row['total_produk']; ?></td>
+                            <td><?php echo $row['total_harga']; ?></td>
                             <td class="action">
-                                <ion-icon name="create-outline"></ion-icon>
-                                <ion-icon name="trash-outline"></ion-icon>
+                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
+                        <?php
+                                }
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -157,17 +169,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $select_acc = mysqli_query($conn, "SELECT * FROM tb_akun");
+                            if(mysqli_num_rows($select_acc) > 0)
+                            {
+                                while($row = mysqli_fetch_assoc($select_acc)){
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>abieza</td>
-                            <td>anan@gmail.com</td>
-                            <td>12345</td>
-                            <td>00</td>
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row['username']; ?></td>
+                            <td><?php echo $row['email']; ?></td>
+                            <td><?php echo $row['password']; ?></td>
+                            <td><?php echo $row['role']; ?></td>
                             <td class="action">
-                                <ion-icon name="create-outline"></ion-icon>
-                                <ion-icon name="trash-outline"></ion-icon>
+                                <a href="dashboard.php?delete=<?php echo $row['id']; ?>"><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
+                        <?php
+                                }
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

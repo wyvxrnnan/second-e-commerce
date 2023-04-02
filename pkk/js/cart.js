@@ -1,20 +1,20 @@
 const totalCount = document.getElementById("count");
 const totalPrice = document.getElementById("price");
-var count = 0;
-totalCount.innerHTML = count;
+totalCount.value = count;
 
 const handleIncrement = () => {
     count++;
-    totalCount.innerHTML = count;
+    totalCount.value = count;
 };
 
 const handleDecrement = () => {
     if (count > 0){
         count--;
-        totalCount.innerHTML = count;
+        totalCount.value = count;
     }
     else {
         count = 0;
+        totalCount.value = count;
     }
 };
 

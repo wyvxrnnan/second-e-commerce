@@ -86,7 +86,7 @@ body {
 }
  
 .container .card{
-    background-color: var(--white);
+    background-color: var(--light);
     text-align: center;
     padding: 2rem;
     box-shadow: var(--black);

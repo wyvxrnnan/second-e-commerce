@@ -45,6 +45,7 @@ body {
 
 ion-icon {
     font-size: 2.5em;
+    color: var(--black);
 }
 
 ion-icon:hover {

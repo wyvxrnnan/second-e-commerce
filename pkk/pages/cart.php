@@ -1,9 +1,27 @@
 <?php
+include '../sql/connection.php';
+
 session_start();
 if(!isset($_SESSION['stat_login']) and !isset($_SESSION['username']) and !isset($_SESSION['password']))
 {   
     header('location:logreg.php');
 }
+
+if(isset($_POST['update_btn'])){
+    $update_value = $_POST['update_quantity'];
+    $update_id = $_POST['update_quantity_id'];
+    $update_quantity_query = mysqli_query($conn, "UPDATE `tb_keranjang` SET jumlah = '$update_value' WHERE id = '$update_id'");
+    if($update_quantity_query){
+       header('location:cart.php');
+    };
+};
+
+if(isset($_GET['remove'])){
+    $remove_id = $_GET['remove'];
+    mysqli_query($conn, "DELETE FROM `tb_keranjang` WHERE id = '$remove_id'");
+    header('location:cart.php');
+};
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,36 +40,54 @@ if(!isset($_SESSION['stat_login']) and !isset($_SESSION['username']) and !isset(
             <ion-icon name="cart-outline"></ion-icon>Cart
             <a href="product.php" class="out"><ion-icon name="close-outline"></ion-icon></a>
         </div>
+        <?php 
+            
+            $select_cart = mysqli_query($conn, "SELECT * FROM `tb_keranjang`");
+            $grand_total = 0;
+            $grand_total2 = 0;
+            if(mysqli_num_rows($select_cart) > 0){
+                while($fetch_cart = mysqli_fetch_assoc($select_cart)){
+        ?>
         <div class="wrapper">
+            
             <div class="img-container">
-                <img src="../img/chips2.png" alt="">
+                <img src="../admin/uploads/<?php echo $fetch_cart['gambar']; ?>" alt="">
             </div>
             <div class="detail">
-                <div class="name">sample text</div>
-                <div class="price" id="price">Rp 10.000</div>
+                <div class="name"><?php echo $fetch_cart['nama']; ?></div>
+                <div class="price" id="price">Rp<?php $harga =  $fetch_cart['harga']; echo number_format($harga, 2,',','.'); ?></div>
             </div>
-            <div class="calc">
-                <ion-icon name="remove-outline" id="decrement"></ion-icon>
-                <span class="num" id="count">1</span>
-                <ion-icon name="add-outline" id="increment"></ion-icon>
-                <ion-icon name="trash-outline"></ion-icon>
-            </div>
+            <form class="calc" method="post">
+                  <input type="hidden" name="update_quantity_id"  value="<?php echo $fetch_cart['id']; ?>" >
+                  <input type="number" name="update_quantity" class="num" min="1"  value="<?php echo $fetch_cart['jumlah']; ?>" >
+                  <input type="submit" name="update_btn" class="update" value="update">
+                  <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" onclick="return confirm('remove item from cart?')"><ion-icon name="trash-outline" class="trash"></ion-icon></a>
+            </form>  
         </div>
+        <?php
+                $sub_total = $fetch_cart['harga'] * $fetch_cart['jumlah'];
+                $grand_total += $sub_total;
+                $grand_total2 = number_format($grand_total, 2,',','.');
+                };
+            };
+        ?>
     </div>
 
     <div class="panel">
         <div class="total">
             <div class="text">total price :</div>
             <div class="desc">
-                <span>Rp</span>
+                <span>Rp<?php echo $grand_total2; ?></span>
                 <span class="num" id="total"></span>
             </div>
         </div>
-        <button>
-            <ion-icon name="cart-outline"></ion-icon>
-            pay now
-        </button>
+        <a href="checkout.php" class="<?= ($grand_total2 > 1)?'':'disabled'; ?>">
+            <button>
+                <ion-icon name="cart-outline"></ion-icon>
+                pay now
+            </button>
+        </a>
     </div>
-    <script src="../js/cart.js"></script>
+    <!-- <script src="../js/cart.js"></script> -->
 </body>
 </html>

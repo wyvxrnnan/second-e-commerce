@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Noto+Serif+SC&family=Source+Sans+Pro&display=swap');
+
+:root {
+    --white: #F5F5F5;
+    --black: #252525;
+    --red: #B1464A;
+    --light: #FFF0DE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.body {
+    background-color: var(--white);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-form {
+    width: fit-content;
+    box-shadow: 5px 5px var(--black);
+}
+
+.display-order {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-transform: capitalize;
+    padding: 20px 45px;
+    background-color: var(--red);
+    color: var(--white);
+    font-size: 1.2em;
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hr {
+    width: 100%;
+    height: 1px;
+    background-color: var(--light);
+}
+
+.display-order .title {
+    font-size: 1.6em;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 15px 25px;
+    background-color: var(--light);
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputBox span {
+    text-transform: capitalize;
+    font-size: 1.2em;
+}
+
+.inputBox input, .inputBox select, .inputBox section option {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid var(--black);
+    background: transparent;
+}
+
+.btn {
+    border: none;
+    background-color: var(--black);
+    color: var(--white);
+    font-size: 1.2em;
+    padding: 10px 25px;
+    text-transform: capitalize;
+    border-radius: 25px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: var(--red);
+    cursor: pointer;
+}
+
+.checkout-form form {
+    display: flex;
+    flex-direction: row;
+}
+
+.display-order .return {
+    text-decoration: none;
+    background: none;
+    border: 2px solid var(--black);
+    padding: 5px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--black);
+    font-size: 1.5em;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.display-order .return:hover {
+    background-color: var(--black);
+    color: var(--red);
+    cursor: pointer;
+}
+
+/* modal */
+
+.order-message-container{
+    position: fixed;
+    top:0; left:0;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding:2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    background-color: gray;
+    width: 100%;
+}
+ 
+.order-message-container::-webkit-scrollbar{
+    width: 1rem;
+}
+ 
+.order-message-container::-webkit-scrollbar-track{
+    background-color: var(--light);
+}
+ 
+.order-message-container::-webkit-scrollbar-thumb{
+    background-color: var(--red);
+}
+ 
+.order-message-container .message-container{
+    width: 50rem;
+    background-color: var(--white);
+    border-radius: .5rem;
+    padding:1rem;
+    text-align: center;
+}
+ 
+.order-message-container .message-container h3{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color:var(--black);
+ }
+ 
+.order-message-container .message-container .order-detail{
+    background-color: var(--red);
+    border-radius: .5rem;
+}
+ 
+.order-message-container .message-container .order-detail span{
+    border-radius: .5rem;
+    color:var(--white);
+    font-size: 1.2rem;
+    display: inline-block;
+    padding:1rem 1.5rem;
+    margin:1rem;
+    text-transform: capitalize;
+}
+ 
+.order-message-container .message-container .order-detail span.total{
+    display: block;
+    margin: auto;
+    width: 30%;
+    background: var(--red);
+    color:var(--white);
+}
+ 
+.order-message-container .message-container .customer-details{
+    margin:1rem 0;
+}
+ 
+.order-message-container .message-container .customer-details p{
+    padding:1rem 0;
+    font-size: 1.2rem;
+    color:var(--black);
+    text-transform: capitalize;
+}
+ 
+.order-message-container .message-container .customer-details p span{
+    color:var(--red);
+    padding:0 .5rem;
+    text-transform: none;
+}
+
+@media (max-width:600px) {
+    .checkout-form form {
+        flex-direction: column;
+    }
+
+    .body {
+        height: 100%;
+    }
+
+    .checkout-form {
+        width: 100%;
+        box-shadow: unset;
+    }
+    
+    .display-order {
+        gap: 100px;
+        padding: 100px 20px 45px 20px;
+    }
+}
