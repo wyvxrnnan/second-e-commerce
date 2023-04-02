@@ -57,7 +57,7 @@ session_destroy();
         <div class="right">
             <div class="header">
                 <span class="title">potato chips kinda stuff.</span>
-                <button class="butt">order now</button>
+                <a href="pages/product.php"><button class="butt">order now</button></a> 
             </div>
 
             <div class="footer">

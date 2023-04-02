@@ -283,7 +283,7 @@ if(isset($_POST['update'])){
         </div>
 
         <div class="table-container">
-            <div class="header">Recent Customer</div>
+            <div class="header">Inbox</div>
             <div class="table">
                 <table>
                     <thead>
