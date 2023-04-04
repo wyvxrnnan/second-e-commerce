@@ -26,22 +26,22 @@ if(isset($_POST['order_btn'])){
    if($cart_query && $detail_query){
       echo "
       <div class='order-message-container'>
-      <div class='message-container'>
-         <h3>thank you!</h3>
-         <div class='order-detail'>
-            <span> item : ".$total_product."</span>
-            <span class='total'> total : Rp".$price_total3."  </span>
-         </div>
-         <div class='customer-details'>
-            <p> name : <span>".$name."</span> </p>
-            <p> phone number : <span>".$number."</span> </p>
-            <p> email : <span>".$email."</span> </p>
-            <p> address : <span>".$address."</span> </p>
-            <p> payment method : <span>".$method."</span> </p>
-         </div>
+        <div class='message-container'>
+            <h3>thank you!</h3>
+            <div class='order-detail'>
+                <span> item : ".$total_product."</span>
+                <span class='total'> total : Rp".$price_total3."  </span>
+            </div>
+            <div class='customer-details'>
+                <p> name : <span>".$name."</span> </p>
+                <p> phone number : <span>".$number."</span> </p>
+                <p> email : <span>".$email."</span> </p>
+                <p> address : <span>".$address."</span> </p>
+                <p> payment method : <span>".$method."</span> </p>
+            </div>
             <a href='product.php' class='btn'>return</a>
-         </div>
-      </div>
+        </div>
+    </div>
       ";
    }
 }

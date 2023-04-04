@@ -26,7 +26,7 @@ session_destroy();
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
             <div class="nav-title">
-                <a href="">ayaysnack</a>
+                <a href="index.php">ayaysnack</a>
             </div>
         </div>
         <div class="nav-btn">
