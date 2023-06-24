@@ -1,2 +1,1 @@
-# PKK
-tugas pkk abija
+tugas pkk
